@@ -12,16 +12,37 @@ def ler_arquivo(caminho_arquivo):
 
 
 def normalizar_texto(texto):
+    """
+    Normaliza o texto utilizado durante a identificação
+    das questões, preservando as quebras de linha necessárias
+    para identificar os números das questões.
+    """
+
     # Remove espaços no início e no fim das linhas
     linhas = [linha.strip() for linha in texto.splitlines()]
 
     # Remove linhas vazias
     linhas = [linha for linha in linhas if linha]
 
-    # Junta o conteúdo novamente
+    # Junta o conteúdo novamente preservando as linhas
     texto = "\n".join(linhas)
 
     return texto
+
+
+def limpar_texto_para_banco(texto):
+    """
+    Prepara o texto final para ser armazenado no banco de dados.
+
+    Substitui quebras de linha e múltiplos espaços por um único espaço.
+    """
+
+    # Qualquer sequência de espaços, tabs ou quebras de linha
+    # é transformada em um único espaço
+    texto = re.sub(r"\s+", " ", texto)
+
+    # Remove espaços no início e no fim
+    return texto.strip()
 
 
 def identificar_questoes(texto):
@@ -103,144 +124,6 @@ def extrair_alternativas(texto):
     return enunciado, alternativas
 
 
-# novo
-# def encontrar_alternativas(texto):
-#     """
-#     Procura o início das quatro alternativas.
-
-#     A identificação considera a sequência:
-
-#     (A) ... (B) ... (C) ... (D)
-
-#     Dessa forma, ocorrências como:
-
-#     O(A) advogado(a)
-#     (CPI)
-#     (CTN)
-#     (ADCT)
-
-#     não são consideradas alternativas.
-#     """
-
-#     padrao = re.compile(r"\(([ABCD])\)")
-
-#     ocorrencias = list(padrao.finditer(texto))
-
-#     letras_esperadas = ["A", "B", "C", "D"]
-
-#     for indice in range(len(ocorrencias) - 3):
-
-#         candidatas = ocorrencias[indice:indice + 4]
-
-#         letras = [
-#             ocorrencia.group(1)
-#             for ocorrencia in candidatas
-#         ]
-
-#         if letras == letras_esperadas:
-#             return candidatas
-
-#     return None
-
-# novo
-# def encontrar_alternativas_corrompidas(texto):
-#     """
-#     Procura uma sequência A-B-C-D considerando alguns
-#     erros conhecidos do OCR.
-
-#     Exemplos de erros tratados:
-
-#     (DA
-#     (AJA
-#     (BBA
-#     (BJn
-#     (B JO
-#     (D JO
-#     (B )JA
-#     """
-
-#     padroes = [
-#         re.compile(r"\(([ABCD])\)"),
-#         re.compile(r"\(([ABCD])\s*J\s*"),
-#         re.compile(r"\(([ABCD])\s*\)J\s*"),
-#         re.compile(r"\(([ABCD])(?=[A-Za-zÀ-ÿ])"),
-#     ]
-
-#     ocorrencias = []
-
-#     for padrao in padroes:
-#         for ocorrencia in padrao.finditer(texto):
-#             ocorrencias.append({
-#                 "inicio": ocorrencia.start(),
-#                 "fim": ocorrencia.end(),
-#                 "letra": ocorrencia.group(1)
-#             })
-
-#     ocorrencias.sort(key=lambda ocorrencia: ocorrencia["inicio"])
-
-#     letras_esperadas = ["A", "B", "C", "D"]
-
-#     for indice in range(len(ocorrencias) - 3):
-
-#         candidatas = ocorrencias[indice:indice + 4]
-
-#         letras = [
-#             ocorrencia["letra"]
-#             for ocorrencia in candidatas
-#         ]
-
-#         if letras == letras_esperadas:
-
-#             return candidatas
-
-#     return None
-
-
-# def extrair_alternativas(texto):
-#     """
-#     Separa o enunciado e as quatro alternativas.
-
-#     Primeiro procura uma sequência normal A-B-C-D.
-#     Caso não encontre, procura a mesma sequência
-#     considerando alguns erros conhecidos do OCR.
-#     """
-
-#     ocorrencias = encontrar_alternativas(texto)
-
-#     if ocorrencias is None:
-#         ocorrencias = encontrar_alternativas_corrompidas(texto)
-
-#     if ocorrencias is None:
-#         raise ValueError(
-#             "Não foi possível identificar um bloco de "
-#             "quatro alternativas na sequência A, B, C, D."
-#         )
-
-#     inicio_alternativas = ocorrencias[0]["inicio"]
-
-#     enunciado = texto[:inicio_alternativas].strip()
-
-#     alternativas = []
-
-#     for indice, ocorrencia in enumerate(ocorrencias):
-
-#         inicio = ocorrencia["fim"]
-
-#         if indice + 1 < len(ocorrencias):
-#             fim = ocorrencias[indice + 1]["inicio"]
-#         else:
-#             fim = len(texto)
-
-#         conteudo = texto[inicio:fim].strip()
-
-#         alternativas.append({
-#             "letra": ocorrencia["letra"],
-#             "enunciado": conteudo
-#         })
-
-#     return enunciado, alternativas
-    
-
 def estruturar_questoes(questoes_brutas):
     questoes = []
     erros = []
@@ -252,6 +135,15 @@ def estruturar_questoes(questoes_brutas):
         try:
             enunciado, alternativas = extrair_alternativas(texto)
 
+            # Limpa o enunciado para o formato final do banco
+            enunciado = limpar_texto_para_banco(enunciado)
+
+            # Limpa cada alternativa para o formato final do banco
+            for alternativa in alternativas:
+                alternativa["enunciado"] = limpar_texto_para_banco(
+                    alternativa["enunciado"]
+                )
+
             questao = {
                 "numero": numero,
                 "enunciado": enunciado,
@@ -260,20 +152,13 @@ def estruturar_questoes(questoes_brutas):
 
             questoes.append(questao)
 
-    #     except ValueError as erro:
-    #         raise ValueError(
-    #             f"Erro na questão {numero}: {erro}"
-    #         ) from erro
-
-    # return questoes
-
         except ValueError as erro:
-                erros.append({
-                    "numero": numero,
-                    "erro": str(erro),
-                    "texto": texto
-                })
-    
+            erros.append({
+                "numero": numero,
+                "erro": str(erro),
+                "texto": texto
+            })
+
     return questoes, erros
 
 
@@ -292,6 +177,7 @@ def validar_questoes(questoes):
         )
 
     for questao in questoes:
+
         if not questao["enunciado"]:
             raise ValueError(
                 f"Questão {questao['numero']} possui enunciado vazio."
@@ -301,6 +187,14 @@ def validar_questoes(questoes):
             raise ValueError(
                 f"Questão {questao['numero']} não possui 4 alternativas."
             )
+
+        for alternativa in questao["alternativas"]:
+
+            if not alternativa["enunciado"]:
+                raise ValueError(
+                    f"Questão {questao['numero']} possui "
+                    f"a alternativa {alternativa['letra']} vazia."
+                )
 
 
 def salvar_json(dados, caminho_saida):
@@ -316,7 +210,7 @@ def salvar_json(dados, caminho_saida):
             indent=2
         )
 
-#novo
+
 def salvar_erros(erros, caminho_saida):
     caminho = Path(caminho_saida)
 
@@ -327,9 +221,11 @@ def salvar_erros(erros, caminho_saida):
         arquivo.write(
             "ERROS ENCONTRADOS NA ESTRUTURAÇÃO DA PROVA\n"
         )
+
         arquivo.write("=" * 60 + "\n\n")
 
         for erro in erros:
+
             arquivo.write(
                 f"QUESTÃO {erro['numero']}\n"
             )
@@ -352,13 +248,14 @@ def salvar_erros(erros, caminho_saida):
 def estruturar_prova(caminho_entrada, caminho_saida, edicao, ano):
     texto = ler_arquivo(caminho_entrada)
 
+    # Normalização necessária para identificar
+    # corretamente as questões
     texto = normalizar_texto(texto)
 
     questoes_brutas = identificar_questoes(texto)
 
     questoes, erros = estruturar_questoes(questoes_brutas)
 
-    # novo
     if erros:
         caminho_erros = Path(caminho_saida).with_suffix(".erros.txt")
 
@@ -372,6 +269,7 @@ def estruturar_prova(caminho_entrada, caminho_saida, edicao, ano):
         print("QUESTÕES COM ERRO:")
 
         for erro in erros:
+
             print(
                 f"- Questão {erro['numero']}: "
                 f"{erro['erro']}"
@@ -409,6 +307,7 @@ if __name__ == "__main__":
             "Uso: python estruturar_prova.py "
             "<txt> <json> <edicao> <ano>"
         )
+
         sys.exit(1)
 
     caminho_entrada = sys.argv[1]
@@ -417,12 +316,16 @@ if __name__ == "__main__":
     ano = int(sys.argv[4])
 
     try:
-        estruturar_prova(
+
+        sucesso = estruturar_prova(
             caminho_entrada,
             caminho_saida,
             edicao,
             ano
         )
+
+        if not sucesso:
+            sys.exit(1)
 
     except ValueError as erro:
         print(f"ERRO: {erro}")

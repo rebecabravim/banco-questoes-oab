@@ -48,3 +48,21 @@ UNIQUE (prova_uuid, numero);
 ALTER TABLE alternativa
 ADD CONSTRAINT uq_alternativa_questao_letra
 UNIQUE (questao_uuid, letra);
+
+ALTER TABLE questao
+DROP CONSTRAINT questao_prova_uuid_fkey;
+
+ALTER TABLE questao
+ADD CONSTRAINT questao_prova_uuid_fkey
+FOREIGN KEY (prova_uuid)
+REFERENCES prova(uuid)
+ON DELETE CASCADE;
+
+ALTER TABLE alternativa
+DROP CONSTRAINT alternativa_questao_uuid_fkey;
+
+ALTER TABLE alternativa
+ADD CONSTRAINT alternativa_questao_uuid_fkey
+FOREIGN KEY (questao_uuid)
+REFERENCES questao(uuid)
+ON DELETE CASCADE;
