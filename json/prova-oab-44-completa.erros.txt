@@ -1,0 +1,60 @@
+ERROS ENCONTRADOS NA ESTRUTURAÇÃO DA PROVA
+============================================================
+
+QUESTÃO 29
+Erro: Esperadas 4 alternativas, mas foram encontradas 3.
+
+Texto da questão:
+Tendo ocorrido uma situação de calamidade pública no Município
+Alfa, no final do ano de 2022, a União enviou vultosos recursos
+federais para enfrentar tal situação. De modo a também diminuir
+a carga tributária sobre a população municipal nesse período, a
+União, por lei federal, aprovou uma isenção de Imposto sobre a
+Propriedade Predial e Territorial Urbana (IPTU) no Município, por
+todo o ano de 2023. O Prefeito municipal estava de acordo e
+editou um decreto para regulamentar a forma como se daria o
+gozo dessa isenção.
+Diante desse cenário, assinale a afirmativa correta.
+(A) A referida isenção, para ser válida, deveria ter sido veiculada
+por lei municipal.
+(BBA União, em  situação de  calamidade  pública,
+excepcionalmente, fica autorizada por lei federal a conceder
+isenção de qualquer imposto municipal.
+(C) A União, como ente central, pode condicionar a entrega de tais
+recursos ao Município à aceitação de que lei federal conceda
+isenção de imposto municipal.
+(D) A edição de decreto por parte do Prefeito configura a
+concordância do ente municipal com a concessão de tal
+isenção, tornando-a válida por ratificação expressa do
+Município.
+
+------------------------------------------------------------
+
+QUESTÃO 43
+Erro: Esperadas 4 alternativas, mas foram encontradas 5.
+
+Texto da questão:
+João, 17 anos, foi representado pelo Ministério Público pela
+prática de ato infracional análogo a roubo. Consta nos autos que o
+representado teria abordado dois transeuntes e, simulando estar
+armado, anunciou o roubo, tendo subtraído os celulares e as
+carteiras das vítimas.
+Ao final do procedimento, o Juízo da Infância considerou
+comprovadas a autoria e a materialidade, tendo julgado
+procedente o pedido e fixado a medida socioeducativa de
+internação. O(A) advogado(a) do adolescente deseja apresentar
+recurso de apelação.
+Sobre o recurso a ser interposto, com base no Estatuto da Criança
+e do Adolescente, assinale a afirmativa correta.
+(A) O sistema recursal adotado é o do Código de Processo Civil,
+sendo certo que o prazo será de 10 (dez) dias.
+(B) O sistema recursal adotado é o do Código de Processo Penal,
+sendo certo que o prazo será de 10 (dez) dias.
+(C) O sistema recursal adotado é o do Código de Processo Civil,
+sendo certo que o prazo será de 15 (quinze) dias.
+(D) O sistema recursal adotado é o do Código de Processo Penal,
+sendo certo que o prazo será de 5 (cinco) dias e, após isso,
+haverá o prazo de 8 (oito) dias para oferecimento das razões.
+
+------------------------------------------------------------
+

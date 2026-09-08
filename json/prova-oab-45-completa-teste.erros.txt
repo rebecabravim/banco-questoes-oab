@@ -1,0 +1,73 @@
+ERROS ENCONTRADOS NA ESTRUTURAÇÃO DA PROVA
+============================================================
+
+QUESTÃO 45
+Erro: Esperadas 4 alternativas, mas foram encontradas 3.
+
+Texto da questão:
+Augusto assinou um contrato de adesão com a sociedade
+empresária Aqualimpa, fornecedora de água e esgoto em sua
+cidade, para o fornecimento de água em sua residência. Após
+meses de uso regular, Augusto foi surpreendido por uma cobrança
+inesperada no valor de R$ 2.500,00 (dois mil e quinhentos reais),
+sendo alegado um “ajuste de consumo retroativo”.
+A sociedade empresária AquaLimpa informou que o valor deveria
+ser pago imediatamente para evitar o corte no fornecimento de
+água. No entanto, Augusto verificou que o contrato não
+mencionava essa possibilidade de ajuste retroativo, nem qualquer
+explicação prévia sobre o cálculo desse valor.
+Diante da situação hipotética narrada e com base no Código de
+Defesa do Consumidor, assinale a afirmativa correta.
+(A) Por ser um contrato escrito, Augusto não tem direito de
+contestar a cobrança, já que os termos do contrato foram
+previamente estipulados pela sociedade empresária e aceitos
+por ele.
+(B) Augusto deve questionar judicialmente a cobrança, uma vez
+que o contrato de adesão deve ser interpretado da forma mais
+favorável ao consumidor quando houver cláusulas ambíguas,
+contraditórias ou omissas.
+(C) Como o fornecimento de água é um serviço essencial, a
+sociedade empresária Aqualimpa não pode cortar o
+fornecimento de água, embora possa realizar a cobrança dos
+valores retroativos nos termos pactuados.
+(DA sociedade empresária Aqualimpa pode cortar o
+fornecimento de água imediatamente se Augusto não pagar a
+dívida, pois a imediata interrupção no fornecimento de
+serviços em razão de inadimplência, independentemente de
+notificação, é lícita.
+
+------------------------------------------------------------
+
+QUESTÃO 73
+Erro: Esperadas 4 alternativas, mas foram encontradas 3.
+
+Texto da questão:
+Jéssica trabalha em um hospital particular de Belo Horizonte, no
+setor de  tratamento de  pacientes com  doenças
+infectocontagiosas, recebendo adicional de insalubridade em grau
+máximo.
+Em 2024, Jessica engravidou e deu ciência do fato ao seu chefe,
+que imediatamente a transferiu para o setor de convênios,
+localizado em um prédio diferente do hospital, ocupando uma
+confortável e arejada sala comercial na qual cinco funcionários
+negociam com os planos de saúde conveniados, por telefone, a
+tabela de valores pelos atendimentos e procedimentos, sem
+atendimento presencial do público externo.
+Sobre a situação apresentada e os termos da CLT, assinale a
+afirmativa correta.
+(A) A empregada, durante a gestação, fez jus ao adicional de
+insalubridade, que cessará após o nascimento da criança, não
+se estendendo ao período de lactação.
+(B) O direito ao adicional de insalubridade, até o retorno, deverá
+cessar porque a transferência foi uma necessidade para a qual
+a sociedade empresária não colaborou.
+(C) Jéssica, de acordo com a norma de regência, terá direito à
+metade do valor do adicional de insalubridade que recebia,
+enquanto estiver em local sem agente agressor à saúde.
+(DA sociedade empresária deve pagar o adicional de
+insalubridade à gestante enquanto ela estiver no setor de
+convênios, fazendo a compensação desse valor na cota-parte
+do INSS.
+
+------------------------------------------------------------
+

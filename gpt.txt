@@ -1,0 +1,251 @@
+"(D)JO"  
+
+"(AJÉ" 
+
+
+"(DA " 
+
+
+"(AJA"  
+
+
+"(BBA" 
+
+
+"(BJn"
+
+"(B JO"
+
+"(D JO"
+
+"(B )JA"
+
+
+
+
+
+
+
+é possivel fazer um regex para esses tipos gerais? parece a ver um padrao
+
+
+
+quando tem parenteses e "J", a letra J é o espaço.
+
+Quando tem a letra da alternativa (A,B,C,D,E) e outra letra grudada, sem parenteses, é porque faltou o parenteses ali. percebe-se isso no caso: "(DA " 
+Se for o J ou o B, deve-se trocá-lo por parenteses e adiconar um espaço. Como em: "(AJÉ", "(BJn", "(BBA" 
+Quando tiver a letra, um espaço, outro parenteses e um jota, retire o espaço logo após a letra e troque o J por um espaço. 
+Como ocorre em: "(B JO", "(D JO", "(B )JA"
+
+so uma pergunta antes, porque anteriormente os casos "(B JO", "(D JO" foram tratados e "(B )JA" nao foi tratado
+
+
+
+
+Na prova 45 tive o seguinte erro:
+ERRO: Erro na questão 76: Esperadas 4 alternativas, mas foram encontradas 8.
+
+porque 8? Observe a questao 76 e 77
+
+76
+
+João Paulo trabalhou como vendedor em uma loja de calçados de
+
+20/02/2022 a 30/01/2023, situada próxima de sua residência, no
+
+município de Duque de Caxias, RJ.
+
+Pela proximidade, menos de 50 m de distância, João Paulo ia a pé
+
+para o serviço e não optou por receber vale-transporte. Ocorre
+
+que, ao ser dispensado, ajuizou ação trabalhista reclamando a
+
+concessão do benefício, ação que seu advogado distribuiu para o
+
+Município do Rio de Janeiro, indo para a 100? Vara do Trabalho
+
+(VT) do Rio de Janeiro, que designou uma audiência presencial.
+
+A loja está localizada em Duque de Caxias e você, advogado(a) da
+
+loja, tem seu escritório na mesma cidade.
+
+Sobre a competência territorial e a medida processual a ser
+
+adotada, assinale a afirmativa correta.
+
+(A) A ação poderá transcorrer no Rio de Janeiro, tendo sido essa a
+opção do empregado, pelo que se prorrogou a competência.
+
+(B) Deverá ser apresentada exceção de incompetência territorial
+em preliminar de contestação, podendo também ser suscitada
+oralmente no momento da audiência, antes da defesa.
+
+(C) Deverá ser apresentada petição de exceção de incompetência
+territorial até cinco dias após o recebimento da notificação
+citatória, em peça autônoma e antes da audiência.
+
+(D) Deverá ser apresentada exceção de incompetência territorial
+no ato da audiência em peça autônoma, mas junto com a
+apresentação da defesa, de modo a evitar eventual preclusão.
+
+
+771
+Lorena trabalha como tosadora de animais em um pet-shop desde
+2022, recebendo um salário mínimo nacional mensalmente. Ainda
+com o contrato de trabalho em vigor, Lorena pediu que você, como
+advogado(a), ajuizasse, em 2024, reclamação trabalhista
+postulando o pagamento de adicional noturno, pois ela trabalha
+até 22h30. Na petição inicial, você não requereu gratuidade de
+justiça, nem juntou declaração de miserabilidade ou necessidade
+jurídica.
+
+O pedido foi julgado totalmente improcedente, mas o Juiz
+
+concedeu, de ofício, a gratuidade de justiça.
+
+Considerando os fatos narrados, a previsão contida na CLT e o
+
+entendimento consolidado do TST, assinale a afirmativa correta.
+
+(A) Alei é omissa quanto aos critérios para deferir a gratuidade de
+justiça, podendo o Juiz concedê-la ou não.
+
+(B) O Juiz está correto, porque o nível salarial de Lorena autoriza
+a concessão da gratuidade de justiça de ofício.
+
+(C) A parte não requereu gratuidade de justiça, caracterizando,
+assim, julgamento extra petita, vedado na hipótese.
+
+(D) A gratuidade de justiça na Justiça do Trabalho é um pedido
+implícito, devendo ser automaticamente concedida a qualquer
+trabalhador.
+
+quando corrigir 771 para 77, funcionou corretamente
+
+
+sobre as alternativas: parece que esse caso nao foi corrigido
+"(B )JA  sociedade,"
+
+
+Agora sobre outro problema com os enunciados
+ERRO: Erro na questão 43: Esperadas 4 alternativas, mas foram encontradas 5.
+Ele considerou o (A) do enunciado como alternativa
+Será que cevemos colocar uma marcação de quando acaba o bloco de enunciado e começa as alternativas?
+Isso deve der feito durante o ocr ou após?
+
+
+João, 17 anos, foi representado pelo Ministério Público pela
+
+prática de ato infracional análogo a roubo. Consta nos autos que o
+
+representado teria abordado dois transeuntes e, simulando estar
+
+armado, anunciou o roubo, tendo subtraído os celulares e as
+carteiras das vítimas.
+
+Ao final do procedimento, o Juízo da Infância considerou
+
+comprovadas a autoria e a materialidade, tendo julgado
+
+procedente o pedido e fixado a medida socioeducativa de
+internação. O(A) advogado(a) do adolescente deseja apresentar
+recurso de apelação.
+
+Sobre o recurso a ser interposto, com base no Estatuto da Criança
+
+e do Adolescente, assinale a afirmativa correta.
+
+(A) O sistema recursal adotado é o do Código de Processo Civil,
+sendo certo que o prazo será de 10 (dez) dias.
+
+(B) O sistema recursal adotado é o do Código de Processo Penal,
+sendo certo que o prazo será de 10 (dez) dias.
+
+(C) O sistema recursal adotado é o do Código de Processo Civil,
+sendo certo que o prazo será de 15 (quinze) dias.
+
+(D) O sistema recursal adotado é o do Código de Processo Penal,
+sendo certo que o prazo será de 5 (cinco) dias e, após isso,
+haverá o prazo de 8 (oito) dias para oferecimento das razões.
+
+com seu script, surgiu o problema de indentificar uma alternativa no enunciado.
+antes tinhamos o seguinte no enunciado:
+
+"com as normas do
+
+Ato das Disposições Constitucionais Transitórias (ADCT) que ainda
+
+produzem seus naturais efeitos."
+
+porém após seu tratamento, surgiu:
+
+"com as normas do
+
+Ato das Disposições Constitucionais Transitórias (A) DCT) que ainda
+
+produzem seus naturais efeitos."
+
+O que identifica o (A) como alternativa
+
+
+Isso também aconteceu em outro enunciado de outra questão:
+
+"disposto no Art. 302 da
+
+Lei nº 9.503/1997 (C) ódigo de Trânsito Brasileiro), "
+
+que era:
+
+"disposto no Art. 302 da
+
+Lei nº 9.503/1997 (Código de Trânsito Brasileiro), "
+
+Foram identificadas 5 alternativas
+
+Outros exemplos do mesmo problema:
+
+"Comissão Parlamentar de Inquérito (C) PI),"
+"Comissão Parlamentar de Inquérito (CPI)"
+
+"Matéria Civil ou Comercial
+
+(C) onvenção da Haia sobre Provas,"
+
+"Matéria Civil ou Comercial
+
+(Convenção da Haia sobre Provas),"
+
+"Código Tributário Nacional
+
+(C) TN),"
+
+"Código Tributário Nacional
+
+(CTN),"
+
+"(A) ristóteles)
+
+No livro A Política"
+
+"(Aristóteles)
+
+No livro A Política"
+
+
+
+sobre a trocar no início da frase: os enunciados estão indentado, logo "(C) onvenção da Haia sobre Provas), promulgada pelo Decreto" apareceu no inicio da frase, por causa da extração, mas ele esta dentro do enunciado
+entre outros exemplos.
+
+
+
+e agora sobre a indetificacao das alternativas ao estruturar a prova:
+
+
+
+em um enunciado tenho o seguinte: "O(A) advogado(a) do adolescente deseja apresentar
+
+recurso de apelação."
+
+ele identificou isso como uma alternativa a mais
