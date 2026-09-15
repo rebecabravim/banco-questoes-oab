@@ -66,3 +66,13 @@ ADD CONSTRAINT alternativa_questao_uuid_fkey
 FOREIGN KEY (questao_uuid)
 REFERENCES questao(uuid)
 ON DELETE CASCADE;
+
+CREATE TABLE disciplina (
+    uuid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    nome VARCHAR(100) NOT NULL UNIQUE
+);
+
+ALTER TABLE questao
+ADD CONSTRAINT questao_disciplina_uuid_fkey
+FOREIGN KEY (disciplina_uuid)
+REFERENCES disciplina(uuid);
