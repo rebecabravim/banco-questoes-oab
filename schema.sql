@@ -76,3 +76,12 @@ ALTER TABLE questao
 ADD CONSTRAINT questao_disciplina_uuid_fkey
 FOREIGN KEY (disciplina_uuid)
 REFERENCES disciplina(uuid);
+
+ALTER TABLE disciplina
+ADD COLUMN codigo VARCHAR(100);
+
+ALTER TABLE disciplina
+ALTER COLUMN codigo SET NOT NULL;
+
+ALTER TABLE disciplina
+ADD CONSTRAINT uq_disciplina_codigo UNIQUE (codigo);

@@ -60,9 +60,23 @@ def inicio():
 
 @app.route("/questoes-oab/questoes")
 def consultar_questoes():
+
+    parametros_validos = {"ano", "edicao", "disciplina-codigo", "numero"}
+
+    parametros_recebidos = set(request.args.keys())
+
+    parametros_invalidos = parametros_recebidos - parametros_validos
+
+    if parametros_invalidos:
+        return jsonify({
+            "erro": "Parâmetro inválido",
+            "parametros": list(parametros_invalidos)
+        }), 400
+
+    
     ano = request.args.get("ano", type=int)
     edicao = request.args.get("edicao", type=int)
-    disciplina = request.args.get("disciplina")
+    disciplina = request.args.get("disciplina-codigo")
     numero = request.args.get("numero", type=int)
 
     resultado = buscar_questoes(
@@ -117,7 +131,8 @@ def consultar_disciplinas():
     for linha in resultado:
         disciplinas.append({
             "uuid": str(linha[0]),
-            "nome": linha[1]
+            "nome": linha[1],
+            "codigo": linha[2]
         })
 
     return jsonify(disciplinas)

@@ -40,7 +40,7 @@ def buscar_questoes(ano=None, edicao=None, disciplina=None, numero=None):
 
             if disciplina is not None:
                 consulta += """
-                    AND LOWER(d.nome) = LOWER(%s)
+                    AND d.codigo = %s
                 """
                 parametros.append(disciplina)
 
@@ -133,7 +133,8 @@ def buscar_disciplinas():
             cursor.execute("""
                 SELECT
                     uuid,
-                    nome
+                    nome,
+                    codigo
                 FROM disciplina
                 ORDER BY nome
             """)
