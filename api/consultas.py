@@ -92,3 +92,53 @@ def buscar_questao_por_uuid(uuid):
 
     finally:
         conexao.close()
+
+def buscar_anos():
+    conexao = conectar_banco()
+
+    try:
+        with conexao.cursor() as cursor:
+            cursor.execute("""
+                SELECT DISTINCT ano
+                FROM prova
+                ORDER BY ano DESC
+            """)
+
+            return cursor.fetchall()
+
+    finally:
+        conexao.close()
+
+def buscar_edicoes():
+    conexao = conectar_banco()
+
+    try:
+        with conexao.cursor() as cursor:
+            cursor.execute("""
+                SELECT DISTINCT edicao
+                FROM prova
+                ORDER BY edicao DESC
+            """)
+
+            return cursor.fetchall()
+
+    finally:
+        conexao.close()
+
+def buscar_disciplinas():
+    conexao = conectar_banco()
+
+    try:
+        with conexao.cursor() as cursor:
+            cursor.execute("""
+                SELECT
+                    uuid,
+                    nome
+                FROM disciplina
+                ORDER BY nome
+            """)
+
+            return cursor.fetchall()
+
+    finally:
+        conexao.close()

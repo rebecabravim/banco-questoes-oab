@@ -1,5 +1,11 @@
 from flask import Flask, jsonify, request
-from consultas import buscar_questoes, buscar_questao_por_uuid
+from consultas import (
+    buscar_questoes,
+    buscar_questao_por_uuid,
+    buscar_anos,
+    buscar_edicoes,
+    buscar_disciplinas
+)
 
 app = Flask(__name__)
 
@@ -83,6 +89,38 @@ def consultar_questao(uuid):
     questoes = montar_questoes(resultado)
 
     return jsonify(questoes[0])
+
+@app.route("/questoes-oab/anos")
+def consultar_anos():
+    resultado = buscar_anos()
+
+    anos = [linha[0] for linha in resultado]
+
+    return jsonify(anos)
+
+
+@app.route("/questoes-oab/edicoes")
+def consultar_edicoes():
+    resultado = buscar_edicoes()
+
+    edicoes = [linha[0] for linha in resultado]
+
+    return jsonify(edicoes)
+
+
+@app.route("/questoes-oab/disciplinas")
+def consultar_disciplinas():
+    resultado = buscar_disciplinas()
+
+    disciplinas = []
+
+    for linha in resultado:
+        disciplinas.append({
+            "uuid": str(linha[0]),
+            "nome": linha[1]
+        })
+
+    return jsonify(disciplinas)
 
 
 if __name__ == "__main__":
