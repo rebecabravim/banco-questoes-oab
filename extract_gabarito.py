@@ -78,7 +78,7 @@ def extrair_gabarito_tipo_1(texto: str) -> dict[int, str]:
 
 
 def salvar_csv(gabarito: dict[int, str], caminho_pdf: Path) -> Path:
-    pasta_saida = Path("data/processed")
+    pasta_saida = Path("data/gabaritos-extraidos")
     pasta_saida.mkdir(parents=True, exist_ok=True)
 
     arquivo_saida = pasta_saida / f"{caminho_pdf.stem}_tipo_1.csv"
