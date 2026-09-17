@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from consultas import buscar_questoes, buscar_questao_por_uuid
 
 app = Flask(__name__)
@@ -54,7 +54,17 @@ def inicio():
 
 @app.route("/questoes-oab/questoes")
 def consultar_questoes():
-    resultado = buscar_questoes()
+    ano = request.args.get("ano", type=int)
+    edicao = request.args.get("edicao", type=int)
+    disciplina = request.args.get("disciplina")
+    numero = request.args.get("numero", type=int)
+
+    resultado = buscar_questoes(
+        ano=ano,
+        edicao=edicao,
+        disciplina=disciplina,
+        numero=numero
+    )
 
     questoes = montar_questoes(resultado)
 

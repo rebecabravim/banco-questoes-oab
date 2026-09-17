@@ -1,12 +1,12 @@
 from banco import conectar_banco
 
 
-def buscar_questoes():
+def buscar_questoes(ano=None, edicao=None, disciplina=None, numero=None):
     conexao = conectar_banco()
 
     try:
-        with conexao.cursor() as cursor:
-            cursor.execute("""
+         with conexao.cursor() as cursor:
+            consulta = """
                 SELECT
                     q.uuid,
                     q.numero,
@@ -25,8 +25,34 @@ def buscar_questoes():
                     ON d.uuid = q.disciplina_uuid
                 INNER JOIN alternativa a
                     ON a.questao_uuid = q.uuid
+                WHERE 1 = 1
+            """
+
+            parametros = []
+
+            if ano is not None:
+                consulta += " AND p.ano = %s"
+                parametros.append(ano)
+
+            if edicao is not None:
+                consulta += " AND p.edicao = %s"
+                parametros.append(edicao)
+
+            if disciplina is not None:
+                consulta += """
+                    AND LOWER(d.nome) = LOWER(%s)
+                """
+                parametros.append(disciplina)
+
+            if numero is not None:
+                consulta += " AND q.numero = %s"
+                parametros.append(numero)
+
+            consulta += """
                 ORDER BY p.ano, p.edicao, q.numero, a.letra
-            """)
+            """
+
+            cursor.execute(consulta, parametros)
 
             return cursor.fetchall()
 
