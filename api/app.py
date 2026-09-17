@@ -4,16 +4,9 @@ from consultas import buscar_questao_por_uuid
 
 app = Flask(__name__)
 
+app.json.ensure_ascii = False
 
-@app.route("/questoes-oab/questoes/<uuid>")
-def consultar_questao(uuid):
-    resultado = buscar_questao_por_uuid(uuid)
-
-    if not resultado:
-        return jsonify({
-            "erro": "Questão não encontrada"
-        }), 404
-
+def montar_questao(resultado):
     primeira_linha = resultado[0]
 
     questao = {
@@ -45,6 +38,26 @@ def consultar_questao(uuid):
 
         if linha[9]:
             questao["resposta_correta"] = linha[7]
+
+    return questao
+
+@app.route("/")
+def inicio():
+    return jsonify({
+        "mensagem": "API de questões da OAB funcionando"
+    })
+
+
+@app.route("/questoes-oab/questoes/<uuid>")
+def consultar_questao(uuid):
+    resultado = buscar_questao_por_uuid(uuid)
+
+    if not resultado:
+        return jsonify({
+            "erro": "Questão não encontrada"
+        }), 404
+
+    questao = montar_questao(resultado)
 
     return jsonify(questao)
 
