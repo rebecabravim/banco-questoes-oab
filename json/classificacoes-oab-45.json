@@ -58,5 +58,425 @@
     "ano": 2026,
     "numero": 10,
     "disciplina_codigo": "filosofia-direito"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 11,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 12,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 13,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 14,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 15,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 16,
+    "disciplina_codigo": "direito-constitucional"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 17,
+    "disciplina_codigo": "direitos-humanos"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 18,
+    "disciplina_codigo": "direitos-humanos"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 19,
+    "disciplina_codigo": "direito-eleitoral"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 20,
+    "disciplina_codigo": "direito-eleitoral"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 21,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 22,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 23,
+    "disciplina_codigo": "direito-financeiro"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 24,
+    "disciplina_codigo": "direito-financeiro"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 25,
+    "disciplina_codigo": "direito-tributario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 26,
+    "disciplina_codigo": "direito-tributario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 27,
+    "disciplina_codigo": "direito-tributario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 28,
+    "disciplina_codigo": "direito-tributario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 29,
+    "disciplina_codigo": "direito-tributario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 30,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 31,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 32,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 33,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 34,
+    "disciplina_codigo": "direito-administrativo"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 35,
+    "disciplina_codigo": "direito-ambiental"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 36,
+    "disciplina_codigo": "direito-ambiental"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 37,
+    "disciplina_codigo": "direito-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 38,
+    "disciplina_codigo": "direito-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 39,
+    "disciplina_codigo": "direito-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 40,
+    "disciplina_codigo": "direito-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 41,
+    "disciplina_codigo": "direito-consumidor"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 42,
+    "disciplina_codigo": "direito-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 43,
+    "disciplina_codigo": "direito-crianca-adolescente"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 44,
+    "disciplina_codigo": "direito-crianca-adolescente"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 45,
+    "disciplina_codigo": "direito-consumidor"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 46,
+    "disciplina_codigo": "direito-consumidor"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 47,
+    "disciplina_codigo": "direito-empresarial"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 48,
+    "disciplina_codigo": "direito-empresarial"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 49,
+    "disciplina_codigo": "direito-empresarial"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 50,
+    "disciplina_codigo": "direito-empresarial"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 51,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 52,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 53,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 54,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 55,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 56,
+    "disciplina_codigo": "processo-civil"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 57,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 58,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 59,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 60,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 61,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 62,
+    "disciplina_codigo": "direito-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 63,
+    "disciplina_codigo": "processo-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 64,
+    "disciplina_codigo": "processo-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 65,
+    "disciplina_codigo": "processo-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 66,
+    "disciplina_codigo": "direito-crianca-adolescente"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 67,
+    "disciplina_codigo": "processo-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 68,
+    "disciplina_codigo": "processo-penal"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 69,
+    "disciplina_codigo": "direito-previdenciario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 70,
+    "disciplina_codigo": "direito-previdenciario"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 71,
+    "disciplina_codigo": "direito-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 72,
+    "disciplina_codigo": "direito-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 73,
+    "disciplina_codigo": "direito-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 74,
+    "disciplina_codigo": "direito-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 75,
+    "disciplina_codigo": "direito-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 76,
+    "disciplina_codigo": "processo-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 77,
+    "disciplina_codigo": "processo-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 78,
+    "disciplina_codigo": "processo-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 79,
+    "disciplina_codigo": "processo-trabalho"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 80,
+    "disciplina_codigo": "direito-trabalho"
   }
 ]

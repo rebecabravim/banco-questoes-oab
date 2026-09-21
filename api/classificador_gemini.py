@@ -4,6 +4,7 @@ import time
 
 from dotenv import load_dotenv
 from google import genai
+from google.genai import errors
 
 
 DISCIPLINAS = [
@@ -31,6 +32,8 @@ DISCIPLINAS = [
 
 
 TAMANHO_LOTE = 10
+TENTATIVAS = 3
+ESPERA_ERRO = 15
 
 
 load_dotenv()
@@ -58,101 +61,136 @@ def classificar_lote(questoes):
         )
 
         texto_questoes += f"""
-QUESTÃO {questao['numero']}
+        QUESTÃO {questao['numero']}
 
-Enunciado:
-{questao['enunciado']}
+        Enunciado:
+        {questao['enunciado']}
 
-Alternativas:
-{texto_alternativas}
+        Alternativas:
+        {texto_alternativas}
 
-"""
+        """
 
     prompt = f"""
-Você é um classificador de questões da primeira fase do Exame da OAB.
+    Você é um classificador de questões da primeira fase do Exame da OAB.
 
-Classifique cada questão em exatamente uma das disciplinas abaixo:
+    Classifique cada questão em exatamente uma das disciplinas abaixo:
 
-{disciplinas}
+    {disciplinas}
 
-Regras:
-- Cada questão deve receber exatamente uma disciplina.
-- Não crie novas disciplinas.
-- Considere o conteúdo jurídico principal da questão.
-- Não classifique com base apenas em palavras isoladas.
-- O código retornado deve ser exatamente igual a um dos códigos fornecidos.
-- Não resolva as questões.
-- Não forneça explicações.
-- Retorne somente um JSON válido.
-- O JSON deve ser uma lista.
-- Para cada questão, informe o número e o código da disciplina.
-- Não omita nenhuma questão.
+    Regras:
+    - Cada questão deve receber exatamente uma disciplina.
+    - Não crie novas disciplinas.
+    - Considere o conteúdo jurídico principal da questão.
+    - Não classifique com base apenas em palavras isoladas.
+    - O código retornado deve ser exatamente igual a um dos códigos fornecidos.
+    - Não resolva as questões.
+    - Não forneça explicações.
+    - Retorne somente um JSON válido.
+    - O JSON deve ser uma lista.
+    - Para cada questão, informe o número e o código da disciplina.
+    - Não omita nenhuma questão.
 
-Formato obrigatório:
+    Formato obrigatório:
 
-[
-  {{
-    "numero": 1,
-    "disciplina_codigo": "etica"
-  }}
-]
+    [
+    {{
+        "numero": 1,
+        "disciplina_codigo": "etica"
+    }}
+    ]
 
-Questões para classificar:
+    Questões para classificar:
 
-{texto_questoes}
-"""
+    {texto_questoes}
+    """
 
-    resposta = cliente.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=prompt
-    )
-
-    texto_resposta = resposta.text.strip()
-
-    try:
-        classificacoes = json.loads(texto_resposta)
-    except json.JSONDecodeError:
-        raise ValueError(
-            f"Gemini não retornou um JSON válido:\n{texto_resposta}"
-        )
-
-    if not isinstance(classificacoes, list):
-        raise ValueError(
-            "Gemini não retornou uma lista de classificações."
-        )
-
-    numeros_esperados = {
-        questao["numero"]
-        for questao in questoes
-    }
-
-    numeros_recebidos = {
-        classificacao.get("numero")
-        for classificacao in classificacoes
-    }
-
-    if numeros_esperados != numeros_recebidos:
-        raise ValueError(
-            f"Questões retornadas não correspondem ao lote.\n"
-            f"Esperadas: {sorted(numeros_esperados)}\n"
-            f"Recebidas: {sorted(numeros_recebidos)}"
-        )
-
-    for classificacao in classificacoes:
-        disciplina = classificacao.get("disciplina_codigo")
-
-        if disciplina not in DISCIPLINAS:
-            raise ValueError(
-                f"Gemini retornou uma disciplina inválida: {disciplina}"
+    for tentativa in range(1, TENTATIVAS + 1):
+        try:
+            resposta = cliente.models.generate_content(
+                model="gemini-3.5-flash-lite",
+                contents=prompt
             )
 
-    return classificacoes
+            texto_resposta = resposta.text.strip()
+
+            if texto_resposta.startswith("```"):
+                texto_resposta = texto_resposta.split("\n", 1)[1]
+
+            if texto_resposta.endswith("```"):
+                texto_resposta = texto_resposta[:-3]
+
+            texto_resposta = texto_resposta.strip()                     
+
+            try:
+                classificacoes = json.loads(texto_resposta)
+            except json.JSONDecodeError:
+                raise ValueError(
+                    f"Gemini não retornou um JSON válido:\n{texto_resposta}"
+                )
+
+            if not isinstance(classificacoes, list):
+                raise ValueError(
+                    "Gemini não retornou uma lista de classificações."
+                )
+
+            numeros_esperados = {
+                questao["numero"]
+                for questao in questoes
+            }
+
+            numeros_recebidos = {
+                classificacao.get("numero")
+                for classificacao in classificacoes
+            }
+
+            if numeros_esperados != numeros_recebidos:
+                raise ValueError(
+                    f"Questões retornadas não correspondem ao lote.\n"
+                    f"Esperadas: {sorted(numeros_esperados)}\n"
+                    f"Recebidas: {sorted(numeros_recebidos)}"
+                )
+
+            for classificacao in classificacoes:
+                disciplina = classificacao.get("disciplina_codigo")
+
+                if disciplina not in DISCIPLINAS:
+                    raise ValueError(
+                        f"Gemini retornou uma disciplina inválida: {disciplina}"
+                    )
+
+            return classificacoes
+
+        except errors.ServerError as erro:
+            print(
+                f"  Erro  de servidor na tentativa "
+                f"{tentativa}/{TENTATIVAS}: {erro}"
+            )
+
+            if tentativa < TENTATIVAS:
+                print(
+                    f"  Aguardando {ESPERA_ERRO} segundos "
+                    f"antes de tentar novamente..."
+                )
+                time.sleep(ESPERA_ERRO)
+            else:
+                raise
+
+        except errors.APIError as erro:
+            print(f"  Erro da API: {erro}")
+            raise
 
 
 def carregar_prova(caminho):
     with open(caminho, "r", encoding="utf-8") as arquivo:
         return json.load(arquivo)
 
+def carregar_classificacoes(caminho):
+    if not os.path.exists(caminho):
+        return []
+
+    with open(caminho, "r", encoding="utf-8") as arquivo:
+        return json.load(arquivo)
 
 def salvar_classificacoes(caminho, classificacoes):
     with open(caminho, "w", encoding="utf-8") as arquivo:
@@ -170,12 +208,36 @@ if __name__ == "__main__":
 
     prova = carregar_prova(caminho_json)
 
-    classificacoes = []
+    classificacoes = carregar_classificacoes(caminho_saida)
 
-    questoes = prova["questoes"]
+    numeros_classificados = {
+        classificacao["numero"]
+        for classificacao in classificacoes
+    }
 
-    for inicio in range(0, len(questoes), TAMANHO_LOTE):
-        lote = questoes[inicio:inicio + TAMANHO_LOTE]
+    if numeros_classificados:
+        print(
+            f"{len(numeros_classificados)} questões "
+            f"já classificadas."
+        )
+    else:
+        print("Nenhuma questão classificada anteriormente.")
+
+    questoes_pendentes = [
+        questao
+        for questao in prova["questoes"]
+        if questao["numero"] not in numeros_classificados
+    ]
+
+    print(
+        f"{len(questoes_pendentes)} questões "
+        f"ainda precisam ser classificadas."
+    )
+
+    # questoes = prova["questoes"]
+
+    for inicio in range(0, len(questoes_pendentes), TAMANHO_LOTE):
+        lote = questoes_pendentes[inicio:inicio + TAMANHO_LOTE]
 
         numeros = [
             questao["numero"]
@@ -211,7 +273,7 @@ if __name__ == "__main__":
 
         print(f"  Lote concluído.\n")
 
-        if inicio + TAMANHO_LOTE < len(questoes):
+        if inicio + TAMANHO_LOTE < len(questoes_pendentes):
             time.sleep(5)
 
     print()
