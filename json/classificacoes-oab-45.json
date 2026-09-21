@@ -1,22 +1,62 @@
 [
   {
+    "edicao": 45,
+    "ano": 2026,
     "numero": 1,
     "disciplina_codigo": "etica"
   },
   {
+    "edicao": 45,
+    "ano": 2026,
     "numero": 2,
     "disciplina_codigo": "etica"
   },
   {
+    "edicao": 45,
+    "ano": 2026,
     "numero": 3,
     "disciplina_codigo": "etica"
   },
   {
+    "edicao": 45,
+    "ano": 2026,
     "numero": 4,
     "disciplina_codigo": "etica"
   },
   {
+    "edicao": 45,
+    "ano": 2026,
     "numero": 5,
     "disciplina_codigo": "etica"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 6,
+    "disciplina_codigo": "etica"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 7,
+    "disciplina_codigo": "etica"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 8,
+    "disciplina_codigo": "etica"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 9,
+    "disciplina_codigo": "filosofia-direito"
+  },
+  {
+    "edicao": 45,
+    "ano": 2026,
+    "numero": 10,
+    "disciplina_codigo": "filosofia-direito"
   }
 ]
