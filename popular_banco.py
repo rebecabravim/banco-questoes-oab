@@ -61,7 +61,7 @@ def validar_dados(dados, gabarito):
             f"{sorted(gabaritos_sem_questao)}"
         )
 
-    numeros_validos = {"A", "B", "C", "D"}
+    numeros_validos = {"A", "B", "C", "D", "*"}
 
     for numero, alternativa in gabarito.items():
         if alternativa not in numeros_validos:
@@ -165,14 +165,16 @@ def popular_banco(dados, gabarito, conexao):
         for questao in dados["questoes"]:
 
             numero = questao["numero"]
+            alternativa_correta = gabarito[numero]
+
+            if alternativa_correta == "*":
+                continue
 
             questao_uuid = inserir_questao(
                 cursor,
                 questao,
                 prova_uuid
             )
-
-            alternativa_correta = gabarito[numero]
 
             for alternativa in questao["alternativas"]:
 

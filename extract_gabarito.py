@@ -36,17 +36,27 @@ def extrair_texto_do_pdf(caminho_pdf: Path) -> str:
 def obter_bloco_tipo_1(texto: str) -> str:
     texto_maiusculo = texto.upper()
 
-    marcador_inicio = "PROVA TIPO 1"
-    marcador_fim = "PROVA TIPO 2"
+    marcador_inicio = re.search(
+        r"(?:PROVA\s+)?TIPO\s+1",
+        texto_maiusculo
+    )
 
-    inicio = texto_maiusculo.find(marcador_inicio)
-    fim = texto_maiusculo.find(marcador_fim, inicio)
+    if not marcador_inicio:
+        raise ValueError(
+            "Não foi possível localizar o bloco do Tipo 1."
+        )
 
-    if inicio == -1:
-        raise ValueError("Não foi possível localizar o bloco da PROVA TIPO 1.")
+    inicio = marcador_inicio.start()
 
-    if fim == -1:
+    marcador_fim = re.search(
+        r"(?:PROVA\s+)?TIPO\s+2",
+        texto_maiusculo[inicio:]
+    )
+
+    if not marcador_fim:
         return texto[inicio:]
+
+    fim = inicio + marcador_fim.start()
 
     return texto[inicio:fim]
 
@@ -65,7 +75,7 @@ def extrair_gabarito_tipo_1(texto: str) -> dict[int, str]:
         linha_respostas = linhas[indice + 1]
 
         numeros = re.findall(r"\b\d{1,2}\b", linha_numeros)
-        respostas = re.findall(r"\b[A-D]\b", linha_respostas.upper())
+        respostas = re.findall(r"\b[A-D]\b|\*", linha_respostas.upper())
 
         if len(numeros) >= 10 and len(respostas) >= len(numeros):
             for numero, resposta in zip(numeros, respostas):
