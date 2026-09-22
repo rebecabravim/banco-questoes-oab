@@ -1,3 +1,8 @@
+# TODO: apagar prova 44 do banco;
+# TODO: retirar 'pagina x' do txt e do codigo de extracao
+# TODO: estruturar json novamente das provas sem o \n
+# retirar 'pagina x' do txt, json e questoes da prova 45
+
 import re
 import json
 import sys
