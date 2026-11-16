@@ -5,6 +5,8 @@ import fitz  # PyMuPDF
 import pytesseract
 from PIL import Image
 
+# Script final com extração OCR por colunas, removendo cabeçalho e rodapé, 
+# salvando o resultado em um arquivo de texto.
 
 def extrair_texto_com_ocr_por_colunas(
     caminho_pdf: Path,
@@ -71,7 +73,7 @@ def salvar_texto(
     pagina_inicial: int,
     pagina_final: int
 ) -> Path:
-    pasta_saida = Path("data/raw_text")
+    pasta_saida = Path("provas-extraidas")
     pasta_saida.mkdir(parents=True, exist_ok=True)
 
     arquivo_saida = (

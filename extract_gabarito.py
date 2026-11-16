@@ -27,7 +27,7 @@ def extrair_texto_do_pdf(caminho_pdf: Path) -> str:
     with fitz.open(caminho_pdf) as pdf:
         for num_pagina, pagina in enumerate(pdf, start=1):
             texto = pagina.get_text("text", sort=True)
-            textos_paginas.append(f"\n\n===== Página {num_pagina} =====\n\n")
+            # textos_paginas.append(f"\n\n===== Página {num_pagina} =====\n\n")
             textos_paginas.append(texto)
 
     return "".join(textos_paginas)
@@ -88,7 +88,7 @@ def extrair_gabarito_tipo_1(texto: str) -> dict[int, str]:
 
 
 def salvar_csv(gabarito: dict[int, str], caminho_pdf: Path) -> Path:
-    pasta_saida = Path("data/gabaritos-extraidos")
+    pasta_saida = Path("gabaritos-extraidos")
     pasta_saida.mkdir(parents=True, exist_ok=True)
 
     arquivo_saida = pasta_saida / f"{caminho_pdf.stem}_tipo_1.csv"

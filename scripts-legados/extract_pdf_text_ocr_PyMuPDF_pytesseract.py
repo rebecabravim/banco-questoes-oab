@@ -45,7 +45,7 @@ def salvar_texto(
     pagina_inicial: int,
     pagina_final: int
 ) -> Path:
-    pasta_saida = Path("data/raw_text")
+    pasta_saida = Path("provas-extraidas")
     pasta_saida.mkdir(parents=True, exist_ok=True)
 
     arquivo_saida = (

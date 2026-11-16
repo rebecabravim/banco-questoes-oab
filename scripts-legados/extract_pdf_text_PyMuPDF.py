@@ -1,35 +1,29 @@
 import argparse
 from pathlib import Path
-
-from pypdf import PdfReader
+import fitz  # PyMuPDF
 
 
 def extract_pdf_text(pdf_path: Path) -> str:
     text_pages = []
 
-    reader = PdfReader(str(pdf_path))
+    with fitz.open(pdf_path) as pdf:
+        page_number = 3
+        page = pdf[page_number - 1]
 
-    page_number = 3
-    page_index = page_number - 1
+        text = page.get_text("text")
 
-    if page_index >= len(reader.pages):
-        raise ValueError(f"O PDF não possui página {page_number}.")
-
-    page = reader.pages[page_index]
-    text = page.extract_text()
-
-    if text and text.strip():
-        text_pages.append(f"\n\n===== Página {page_number} =====\n\n")
-        text_pages.append(text)
+        if text.strip():
+            text_pages.append(f"\n\n===== Página {page_number} =====\n\n")
+            text_pages.append(text)
 
     return "".join(text_pages)
 
 
 def save_text(text: str, pdf_path: Path) -> Path:
-    output_dir = Path("data/raw_text")
+    output_dir = Path("provas-extraidas")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_file = output_dir / f"{pdf_path.stem}_pypdf_3.txt"
+    output_file = output_dir / f"{pdf_path.stem}_pyMuPDF_2.txt"
     output_file.write_text(text, encoding="utf-8")
 
     return output_file
@@ -37,7 +31,7 @@ def save_text(text: str, pdf_path: Path) -> Path:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Extrai somente a página 3 de um PDF usando pypdf."
+        description="Extrai somente a página 3 de um PDF da OAB."
     )
 
     parser.add_argument(

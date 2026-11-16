@@ -20,7 +20,7 @@ def extract_pdf_text(pdf_path: Path) -> str:
     return "".join(text_pages)
 
 def save_text(text: str, pdf_path: Path) -> Path:
-    output_dir = Path("data/raw_text")
+    output_dir = Path("provas-extraidas")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / f"{pdf_path.stem}_pdfplumber_1.txt"
@@ -31,7 +31,7 @@ def save_text(text: str, pdf_path: Path) -> Path:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Extrai o texto de um PDF da prova da OAB e salva em data/raw_text."
+        description="Extrai o texto de um PDF da prova da OAB e salva em provas-extraidas."
     )
 
     parser.add_argument(
