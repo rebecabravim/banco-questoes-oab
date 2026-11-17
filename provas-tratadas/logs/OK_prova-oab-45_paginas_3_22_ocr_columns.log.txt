@@ -1,0 +1,30 @@
+RELATÓRIO DE ALTERAÇÕES DO TRATAMENTO OCR
+============================================================
+
+Total de alterações: 5
+
+QUESTÃO 22
+Correção: Correção de fechamento reconhecido como J
+Antes: '(DJ'
+Depois: '(D) '
+------------------------------------------------------------
+QUESTÃO 48
+Correção: Correção de fechamento reconhecido como J
+Antes: '(AJ'
+Depois: '(A) '
+------------------------------------------------------------
+QUESTÃO 76
+Correção: Correção do número da questão reconhecido como 771
+Antes: '771'
+Depois: '77'
+------------------------------------------------------------
+QUESTÃO 1
+Correção: Correção de espaçamento da alternativa
+Antes: '(B)A'
+Depois: '(B) A'
+------------------------------------------------------------
+QUESTÃO 46
+Correção: Correção de espaçamento da alternativa
+Antes: '(D)J'
+Depois: '(D) J'
+------------------------------------------------------------
