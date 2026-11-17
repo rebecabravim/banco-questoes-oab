@@ -9,7 +9,8 @@ PADRAO_ALTERNATIVA_COLADA = r'(?m)^(\([A-E]\))([A-Za-zÀ-ÿ])'
 PADRAO_ALTERNATIVA_J = r'(?m)^\(([A-E])\s*J\s*'
 PADRAO_ALTERNATIVA_J_COM_ESPACO = r'(?m)^\(([A-E])\s*\)J\s*'
 # PADRAO_ALTERNATIVA_SEM_FECHAMENTO = r'(?m)^\(([A-E])([A-Za-zÀ-ÿ])'
-# 
+
+PASTA_SAIDA = Path("provas-tratadas") 
 
 
 def normalizar_alternativas(texto):
@@ -131,15 +132,23 @@ def tratar_texto(texto):
     return texto
 
 
-def tratar_arquivo(caminho_entrada, caminho_saida):
-    texto = Path(caminho_entrada).read_text(encoding="utf-8")
+def tratar_arquivo(caminho_entrada):
+    caminho_entrada = Path(caminho_entrada)
+
+    texto = caminho_entrada.read_text(encoding="utf-8")
 
     texto_tratado = tratar_texto(texto)
 
-    Path(caminho_saida).write_text(
+    PASTA_SAIDA.mkdir(parents=True, exist_ok=True)
+
+    caminho_saida = PASTA_SAIDA / caminho_entrada.name
+
+    caminho_saida.write_text(
         texto_tratado,
         encoding="utf-8"
     )
+
+    return caminho_saida
 
 
 def main():
@@ -152,20 +161,12 @@ def main():
         help="Caminho do arquivo TXT gerado pelo OCR."
     )
 
-    parser.add_argument(
-        "saida",
-        help="Caminho do arquivo TXT tratado."
-    )
-
     argumentos = parser.parse_args()
 
-    tratar_arquivo(
-        argumentos.entrada,
-        argumentos.saida
-    )
+    caminho_saida = tratar_arquivo(argumentos.entrada)
 
     print(
-        f"Arquivo tratado com sucesso: {argumentos.saida}"
+        f"Arquivo tratado com sucesso: {caminho_saida}"
     )
 
 

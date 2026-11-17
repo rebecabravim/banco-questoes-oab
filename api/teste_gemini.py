@@ -16,7 +16,7 @@ cliente = genai.Client(api_key=chave_api)
 
 
 resposta = cliente.models.generate_content(
-    model="gemini-3.5-flash",
+    model="gemini-2.5-flash",
     contents="Explique em uma frase o que é Direito Constitucional."
 )
 

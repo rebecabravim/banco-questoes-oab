@@ -1,13 +1,10 @@
-# TODO: apagar prova 44 do banco;
-# TODO: retirar 'pagina x' do txt e do codigo de extracao
-# TODO: estruturar json novamente das provas sem o \n
-# retirar 'pagina x' do txt, json e questoes da prova 45
-
+import argparse
 import re
 import json
 import sys
 from pathlib import Path
 
+PASTA_SAIDA = Path("json")
 
 def ler_arquivo(caminho_arquivo):
     caminho = Path(caminho_arquivo)
@@ -250,7 +247,7 @@ def salvar_erros(erros, caminho_saida):
             arquivo.write("\n\n")
             arquivo.write("-" * 60 + "\n\n")
 
-def estruturar_prova(caminho_entrada, caminho_saida, edicao, ano):
+def estruturar_prova(caminho_entrada, edicao, ano):
     texto = ler_arquivo(caminho_entrada)
 
     # Normalização necessária para identificar
@@ -261,8 +258,15 @@ def estruturar_prova(caminho_entrada, caminho_saida, edicao, ano):
 
     questoes, erros = estruturar_questoes(questoes_brutas)
 
+    caminho_saida = (
+        PASTA_SAIDA / f"prova-oab-estrutura-{edicao}.json"
+    )
+
     if erros:
-        caminho_erros = Path(caminho_saida).with_suffix(".erros.txt")
+        caminho_erros = (
+            PASTA_SAIDA / "logs" /
+            f"prova-oab-estrutura-{edicao}.erros.txt"
+        )
 
         salvar_erros(erros, caminho_erros)
 
@@ -307,26 +311,37 @@ def estruturar_prova(caminho_entrada, caminho_saida, edicao, ano):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 5:
-        print(
-            "Uso: python estruturar_prova.py "
-            "<txt> <json> <edicao> <ano>"
-        )
+    parser = argparse.ArgumentParser(
+        description="Estrutura o texto tratado da prova em formato JSON."
+    )
 
-        sys.exit(1)
+    parser.add_argument(
+        "caminho_entrada",
+        help="Caminho do arquivo TXT tratado."
+    )
 
-    caminho_entrada = sys.argv[1]
-    caminho_saida = sys.argv[2]
-    edicao = int(sys.argv[3])
-    ano = int(sys.argv[4])
+    parser.add_argument(
+        "--edicao",
+        type=int,
+        required=True,
+        help="Número da edição da prova."
+    )
+
+    parser.add_argument(
+        "--ano",
+        type=int,
+        required=True,
+        help="Ano da edição da prova."
+    )
+
+    argumentos = parser.parse_args()
 
     try:
 
         sucesso = estruturar_prova(
-            caminho_entrada,
-            caminho_saida,
-            edicao,
-            ano
+            argumentos.caminho_entrada,
+            argumentos.edicao,
+            argumentos.ano
         )
 
         if not sucesso:

@@ -1,12 +1,14 @@
 import argparse
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf  # PyMuPDF
 import pytesseract
 from PIL import Image
 
 # Script final com extração OCR por colunas, removendo cabeçalho e rodapé, 
 # salvando o resultado em um arquivo de texto.
+
+PASTA_SAIDA = Path("provas-extraidas")
 
 def extrair_texto_com_ocr_por_colunas(
     caminho_pdf: Path,
@@ -15,7 +17,7 @@ def extrair_texto_com_ocr_por_colunas(
 ) -> str:
     textos_paginas = []
 
-    with fitz.open(caminho_pdf) as pdf:
+    with pymupdf.open(caminho_pdf) as pdf:
         for numero_pagina in range(pagina_inicial, pagina_final + 1):
             indice_pagina = numero_pagina - 1
             pagina = pdf[indice_pagina]
@@ -57,9 +59,9 @@ def extrair_texto_com_ocr_por_colunas(
                 config=configuracao
             )
 
-            textos_paginas.append(
-                f"\n\n===== Página {numero_pagina} =====\n\n"
-            )
+            # textos_paginas.append(
+            #     f"\n\n===== Página {numero_pagina} =====\n\n"
+            # )
             textos_paginas.append(texto_esquerda.strip())
             textos_paginas.append("\n\n")
             textos_paginas.append(texto_direita.strip())
@@ -73,7 +75,7 @@ def salvar_texto(
     pagina_inicial: int,
     pagina_final: int
 ) -> Path:
-    pasta_saida = Path("provas-extraidas")
+    pasta_saida = PASTA_SAIDA
     pasta_saida.mkdir(parents=True, exist_ok=True)
 
     arquivo_saida = (
@@ -124,7 +126,7 @@ def main():
             "O arquivo informado precisa ser um PDF."
         )
 
-    with fitz.open(caminho_pdf) as pdf:
+    with pymupdf.open(caminho_pdf) as pdf:
         total_paginas = len(pdf)
 
     if argumentos.pagina_inicial < 1:
