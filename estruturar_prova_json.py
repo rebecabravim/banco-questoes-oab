@@ -86,7 +86,7 @@ def extrair_alternativas(texto):
     Separa o enunciado e as quatro alternativas.
     """
 
-    padrao = re.compile(r"\(([ABCD])\)")
+    padrao = re.compile(r"(?m)^\(([ABCD])\)")
 
     ocorrencias = list(padrao.finditer(texto))
 

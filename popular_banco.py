@@ -1,10 +1,14 @@
 import argparse
 import csv
 import json
+import os
 import sys
 from pathlib import Path
 
 import psycopg
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def ler_json(caminho_arquivo):
@@ -207,44 +211,15 @@ def main():
     )
 
     parser.add_argument(
-        "json",
+        "--json",
+        required=True,
         help="Arquivo JSON da prova"
     )
 
     parser.add_argument(
-        "gabarito",
+        "--gabarito",
+        required=True,
         help="Arquivo CSV do gabarito"
-    )
-
-    parser.add_argument(
-        "--host",
-        default="localhost",
-        help="Host do PostgreSQL"
-    )
-
-    parser.add_argument(
-        "--port",
-        default=5432,
-        type=int,
-        help="Porta do PostgreSQL"
-    )
-
-    parser.add_argument(
-        "--database",
-        required=True,
-        help="Nome do banco de dados"
-    )
-
-    parser.add_argument(
-        "--user",
-        required=True,
-        help="Usuário do PostgreSQL"
-    )
-
-    parser.add_argument(
-        "--password",
-        required=True,
-        help="Senha do PostgreSQL"
     )
 
     argumentos = parser.parse_args()
@@ -264,11 +239,11 @@ def main():
             sys.exit(1)
 
         conexao = psycopg.connect(
-            host=argumentos.host,
-            port=argumentos.port,
-            dbname=argumentos.database,
-            user=argumentos.user,
-            password=argumentos.password
+            host=os.getenv("DB_HOST"),
+            port=os.getenv("DB_PORT"),
+            dbname=os.getenv("DB_NAME"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
         )
 
         try:
