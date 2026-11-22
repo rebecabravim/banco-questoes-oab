@@ -1,7 +1,10 @@
+
+import argparse
 import json
 import os
 import time
 
+from pathlib import Path
 from dotenv import load_dotenv
 from google import genai
 from google.genai import errors
@@ -94,10 +97,10 @@ def classificar_lote(questoes):
     Formato obrigatório:
 
     [
-    {{
-        "numero": 1,
-        "disciplina_codigo": "etica"
-    }}
+        {{
+            "numero": 1,
+            "disciplina_codigo": "etica"
+        }}
     ]
 
     Questões para classificar:
@@ -163,7 +166,7 @@ def classificar_lote(questoes):
 
         except errors.ServerError as erro:
             print(
-                f"  Erro  de servidor na tentativa "
+                f"  Erro de servidor na tentativa "
                 f"{tentativa}/{TENTATIVAS}: {erro}"
             )
 
@@ -185,12 +188,28 @@ def carregar_prova(caminho):
     with open(caminho, "r", encoding="utf-8") as arquivo:
         return json.load(arquivo)
 
-def carregar_classificacoes(caminho):
+
+def carregar_classificacoes(caminho, prova):
     if not os.path.exists(caminho):
-        return []
+        return {
+            "edicao": prova["edicao"],
+            "ano": prova["ano"],
+            "questoes": []
+        }
 
     with open(caminho, "r", encoding="utf-8") as arquivo:
-        return json.load(arquivo)
+        classificacoes = json.load(arquivo)
+
+    if (
+        classificacoes["edicao"] != prova["edicao"]
+        or classificacoes["ano"] != prova["ano"]
+    ):
+        raise ValueError(
+            "O arquivo de classificações não corresponde à prova informada."
+        )
+
+    return classificacoes
+
 
 def salvar_classificacoes(caminho, classificacoes):
     with open(caminho, "w", encoding="utf-8") as arquivo:
@@ -203,16 +222,42 @@ def salvar_classificacoes(caminho, classificacoes):
 
 
 if __name__ == "__main__":
-    caminho_json = "json/prova-oab-45-completa.json"
-    caminho_saida = "json/classificacoes-oab-45.json"
+    parser = argparse.ArgumentParser(
+        description="Classifica questões da OAB utilizando o Gemini."
+    )
+
+    parser.add_argument(
+        "arquivo",
+        help="Caminho do arquivo JSON da prova."
+    )
+
+    argumentos = parser.parse_args()
+
+    caminho_json = Path(argumentos.arquivo)
+
+    if not caminho_json.exists():
+        raise FileNotFoundError(
+            f"Arquivo da prova não encontrado: {caminho_json}"
+        )
 
     prova = carregar_prova(caminho_json)
 
-    classificacoes = carregar_classificacoes(caminho_saida)
+    pasta_saida = Path("json/classificacoes")
+    pasta_saida.mkdir(parents=True, exist_ok=True)
+
+    caminho_saida = (
+        pasta_saida /
+        f"classificacoes-oab-{prova['edicao']}.json"
+    )
+
+    classificacoes = carregar_classificacoes(
+        caminho_saida,
+        prova
+    )
 
     numeros_classificados = {
         classificacao["numero"]
-        for classificacao in classificacoes
+        for classificacao in classificacoes["questoes"]
     }
 
     if numeros_classificados:
@@ -234,8 +279,6 @@ if __name__ == "__main__":
         f"ainda precisam ser classificadas."
     )
 
-    # questoes = prova["questoes"]
-
     for inicio in range(0, len(questoes_pendentes), TAMANHO_LOTE):
         lote = questoes_pendentes[inicio:inicio + TAMANHO_LOTE]
 
@@ -253,25 +296,29 @@ if __name__ == "__main__":
 
         for classificacao in classificacoes_lote:
             classificacao_completa = {
-                "edicao": prova["edicao"],
-                "ano": prova["ano"],
                 "numero": classificacao["numero"],
                 "disciplina_codigo": classificacao["disciplina_codigo"]
             }
 
-            classificacoes.append(classificacao_completa)
+            classificacoes["questoes"].append(
+                classificacao_completa
+            )
 
             print(
                 f"  Questão {classificacao['numero']} "
                 f"→ {classificacao['disciplina_codigo']}"
             )
 
+        classificacoes["questoes"].sort(
+            key=lambda questao: questao["numero"]
+        )
+
         salvar_classificacoes(
             caminho_saida,
             classificacoes
         )
 
-        print(f"  Lote concluído.\n")
+        print("  Lote concluído.\n")
 
         if inicio + TAMANHO_LOTE < len(questoes_pendentes):
             time.sleep(5)
