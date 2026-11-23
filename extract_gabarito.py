@@ -3,7 +3,7 @@ import csv
 import re
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf  # PyMuPDF
 
 PROVA_TIPO = 1
 TOTAL_QUESTOES = 80
@@ -12,7 +12,7 @@ TOTAL_QUESTOES = 80
 # def extrair_texto_do_pdf(caminho_pdf: Path) -> str:
 #     text_pages = []
 
-#     with fitz.open(pdf_path) as pdf:
+#     with pymupdf.open(pdf_path) as pdf:
 #         for page_number, page in enumerate(pdf, start=1):
 #             text = page.get_text("text", sort=True)
 
@@ -24,7 +24,7 @@ TOTAL_QUESTOES = 80
 def extrair_texto_do_pdf(caminho_pdf: Path) -> str:
     textos_paginas = []
 
-    with fitz.open(caminho_pdf) as pdf:
+    with pymupdf.open(caminho_pdf) as pdf:
         for num_pagina, pagina in enumerate(pdf, start=1):
             texto = pagina.get_text("text", sort=True)
             # textos_paginas.append(f"\n\n===== Página {num_pagina} =====\n\n")

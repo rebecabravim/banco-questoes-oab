@@ -1,0 +1,104 @@
+{
+  "questoes": [
+    {
+      "inicio": 1,
+      "fim": 8,
+      "disciplina_codigo": "etica"
+    },
+    {
+      "inicio": 9,
+      "fim": 10,
+      "disciplina_codigo": "filosofia-direito"
+    },
+    {
+      "inicio": 11,
+      "fim": 16,
+      "disciplina_codigo": "direito-constitucional"
+    },
+    {
+      "inicio": 17,
+      "fim": 18,
+      "disciplina_codigo": "direitos-humanos"
+    },
+    {
+      "inicio": 19,
+      "fim": 20,
+      "disciplina_codigo": "direito-eleitoral"
+    },
+    {
+      "inicio": 21,
+      "fim": 22,
+      "disciplina_codigo": "direito-internacional"
+    },
+    {
+      "inicio": 23,
+      "fim": 24,
+      "disciplina_codigo": "direito-financeiro"
+    },
+    {
+      "inicio": 25,
+      "fim": 29,
+      "disciplina_codigo": "direito-tributario"
+    },
+    {
+      "inicio": 30,
+      "fim": 34,
+      "disciplina_codigo": "direito-administrativo"
+    },
+    {
+      "inicio": 35,
+      "fim": 36,
+      "disciplina_codigo": "direito-ambiental"
+    },
+    {
+      "inicio": 37,
+      "fim": 42,
+      "disciplina_codigo": "direito-civil"
+    },
+    {
+      "inicio": 43,
+      "fim": 44,
+      "disciplina_codigo": "direito-crianca-adolescente"
+    },
+    {
+      "inicio": 45,
+      "fim": 46,
+      "disciplina_codigo": "direito-consumidor"
+    },
+    {
+      "inicio": 47,
+      "fim": 50,
+      "disciplina_codigo": "direito-empresarial"
+    },
+    {
+      "inicio": 51,
+      "fim": 56,
+      "disciplina_codigo": "processo-civil"
+    },
+    {
+      "inicio": 57,
+      "fim": 62,
+      "disciplina_codigo": "direito-penal"
+    },
+    {
+      "inicio": 63,
+      "fim": 68,
+      "disciplina_codigo": "processo-penal"
+    },
+    {
+      "inicio": 69,
+      "fim": 70,
+      "disciplina_codigo": "direito-previdenciario"
+    },
+    {
+      "inicio": 71,
+      "fim": 75,
+      "disciplina_codigo": "direito-trabalho"
+    },
+    {
+      "inicio": 76,
+      "fim": 80,
+      "disciplina_codigo": "processo-trabalho"
+    }
+  ]
+}
