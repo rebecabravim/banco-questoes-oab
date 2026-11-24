@@ -121,9 +121,8 @@ def persistir_classificacoes(prova, classificacoes):
                 )
 
                 if cursor.rowcount == 0:
-                    raise ValueError(
-                        f"Questão {numero} da edição {edicao} não encontrada."
-                    )
+                    print(f"Questão {numero}: não encontrada no banco. Possivelmente anulada.")
+                    continue
 
                 print(f"Questão {numero}: {disciplina_codigo}")
 
