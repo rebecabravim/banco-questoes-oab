@@ -85,3 +85,25 @@ ALTER COLUMN codigo SET NOT NULL;
 
 ALTER TABLE disciplina
 ADD CONSTRAINT uq_disciplina_codigo UNIQUE (codigo);
+
+INSERT INTO disciplina (nome, codigo) VALUES
+    ('Direito Administrativo', 'direito-administrativo'),
+    ('Direito Civil', 'direito-civil'),
+    ('Direito Constitucional', 'direito-constitucional'),
+    ('Direito da Criança e do Adolescente', 'direito-crianca-adolescente'),
+    ('Direito do Consumidor', 'direito-consumidor'),
+    ('Direito do Trabalho', 'direito-trabalho'),
+    ('Direito Empresarial', 'direito-empresarial'),
+    ('Direito Internacional', 'direito-internacional'),
+    ('Direito Tributário', 'direito-tributario'),
+    ('Direito Penal', 'direito-penal'),
+    ('Direitos Humanos', 'direitos-humanos'),
+    ('Ética', 'etica'),
+    ('Filosofia do Direito', 'filosofia-direito'),
+    ('Processo Civil', 'processo-civil'),
+    ('Processo do Trabalho', 'processo-trabalho'),
+    ('Processo Penal', 'processo-penal'),
+    ('Direito Financeiro', 'direito-financeiro'),
+    ('Direito Eleitoral', 'direito-eleitoral'),
+    ('Direito Previdenciário', 'direito-previdenciario'),
+    ('Direito Ambiental', 'direito-ambiental');
